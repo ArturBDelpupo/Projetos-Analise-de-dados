@@ -13,4 +13,11 @@ file = os.listdir(path)
 
 data = pd.read_csv(os.path.join(path, file[0]), encoding='iso-8859-1')
 
-print(data.head())
+print(data.shape)
+#print(data.head())
+
+#print (data.isnull().sum())
+
+data = data.dropna()
+
+print(data.describe())
