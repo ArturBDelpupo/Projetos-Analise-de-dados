@@ -1,0 +1,13 @@
+'''
+Criar ambiente .venv:
+python -m venv ".\pasta\subpasta\.venv"
+ex:
+python -m venv ".\Programação Py\Pratica_Programar em py.ipynb\.venv"
+
+
+Ativar ambiente .venv:
+& ".\pasta\subpasta\.venv\Scripts\Activate.ps1"
+ex:
+& ".\Programação Py\Pratica_Programar em py.ipynb\.venv\Scripts\Activate.ps1"
+
+'''
