@@ -22,7 +22,7 @@ data = data.drop([])
 print(data.describe())
 
 
-data = data.loc[(data['Year'] != 2019)  & (data['Year'] != 2020)]
+data = data.loc[(data['Year'] != 2019)  & (data['Year'] != 2020)] #filtro retirando dados de 2019 e 2020, pois estavam com dados vazios
 
 
 #tamanho da img
@@ -34,8 +34,14 @@ sns.barplot(data= data, x = 'Year', y = 'Global', ci = None, estimator=sum) #ci 
 #legenda
 plt.xlabel ('Quantidades de vendas (mi)')
 #plt
-plt.show()
-
-
+#plt.show()
 
 print(data.head())
+
+plt.figure(figsize=(13,5))
+plt.style.use('ggplot')
+
+plt.title('Distribuiçao das vendas globais', loc='left', fontsize = 14)
+sns.kdeplot(data['Global'], shade = True, bw = 1, linewidth = 2.5) #shade = adiciona sombra abaixo da linha
+
+plt.show()
