@@ -36,12 +36,21 @@ plt.xlabel ('Quantidades de vendas (mi)')
 #plt
 #plt.show()
 
-print(data.head())
+#print(data.head())
 
 plt.figure(figsize=(13,5))
 plt.style.use('ggplot')
 
 plt.title('Distribuiçao das vendas globais', loc='left', fontsize = 14)
-sns.kdeplot(data['Global'], shade = True, bw = 1, linewidth = 2.5) #shade = adiciona sombra abaixo da linha
+sns.kdeplot(data['Global'], fill = True, bw = 1, linewidth = 2.5) #fill = adiciona sombra abaixo da linha
+
+#plt.show()
+print (data.groupby(by =['Year']).sum())
+
+plt.figure(figsize= (13,5))
+plt.title('Análise da distribuição global (mi)', loc= 'left', fontsize = 14)
+sns.boxplot(data= data, x ='Year', y='Global')
 
 plt.show()
+
+print (data.loc[ data['Global'] >= 10])
