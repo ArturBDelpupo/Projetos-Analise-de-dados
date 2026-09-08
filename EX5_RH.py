@@ -35,9 +35,33 @@ plt.figure(figsize=(13,5))
 plt.title('Análise da renda', fontsize = 14, loc='left')
 sns.kdeplot(data= data['Salario'], fill= True)
 plt.show()
-plt.clf()
+#plt.clf()
 
+plt.figure(figsize=(13,5))
 plt.title('Análise da experiencia', fontsize = 14, loc='left')
 sns.kdeplot(data=data['Experiencia'], fill=True, color='red')
 
 plt.show()
+
+plt.figure(figsize=(13,5))
+plt.subplot(1,2,1)
+sns.boxplot(x=data ['Salario'])
+
+plt.subplot(1,2,2)
+sns.boxplot(x=data ['Experiencia'])
+
+plt.show()
+
+
+#Distribuição
+plt.figure(figsize=(13,5))
+sns.regplot(data=data, x='Salario', y='Experiencia')
+#sns.scatterplot(data=data, x='Salario', y='Experiencia')
+
+
+#Correlação
+corr = data.corr()
+plt.figure(figsize=(13,5))
+sns.heatmap(corr, annot=True)#mostra grafico de correlaçao, Annot adiciona o numero dentro de cada caixinha da corr.
+plt.show()
+
