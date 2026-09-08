@@ -93,8 +93,20 @@ data['Jogo'] = label.fit_transform(data['Game'])
 
 print(data.head())
 
-cores = sns.color_palette('husl', 8)
-print (cores)
+cores = sns.color_palette('hls', 8)
+
+plt.figure(figsize=(20,5))
+plt.title('Análise por produtora de game (mi)', loc= 'left', fontsize = 14)
+sns.scatterplot(data= data, x= 'Produtora', y= 'Global', color=cores[0])
+
+plt.figure(figsize=(20,5))
+plt.title('Análise por generos de game (mi)', loc= 'left', fontsize = 14)
+sns.scatterplot(data= data, x= 'Genero', y= 'Global', color=cores[0])
+
+plt.figure(figsize=(20,5))
+plt.title('Análise por Jogo (mi)', loc= 'left', fontsize = 14)
+sns.scatterplot(data= data, x= 'Jogo', y= 'Global', color=cores[0])
 
 
-#plt.show()
+
+plt.show()
