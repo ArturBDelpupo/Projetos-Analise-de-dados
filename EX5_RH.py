@@ -18,13 +18,26 @@ data = pd.read_csv(os.path.join(path, file[0]))
 
 #Renomear Colunas
 data.rename(columns={
-    'YearsExperience' : 'Esperiencia',
+    'YearsExperience' : 'Experiencia',
     'Salary' : 'Salario'
 }, inplace= True) #Inplace = True serve para renomear na propria base de dados, sem ter que criar uma variável nova
 
 #print(data.head())
 #Dimnesão
-print (data.shape)
+#print (data.shape)
 
 #Campos nulos
-print(data.isnull().sum())
+#print(data.isnull().sum())
+
+#print (data.describe())
+
+plt.figure(figsize=(13,5))
+plt.title('Análise da renda', fontsize = 14, loc='left')
+sns.kdeplot(data= data['Salario'], fill= True)
+plt.show()
+plt.clf()
+
+plt.title('Análise da experiencia', fontsize = 14, loc='left')
+sns.kdeplot(data=data['Experiencia'], fill=True, color='red')
+
+plt.show()
