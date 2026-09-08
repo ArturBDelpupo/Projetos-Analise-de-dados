@@ -4,6 +4,7 @@ import pandas as pd
 import numpy as np
 import seaborn as sns
 import matplotlib.pyplot as plt
+from sklearn.preprocessing import LabelEncoder
 import warnings
 
 # Download latest version
@@ -30,23 +31,23 @@ plt.figure(figsize=(13,5))
 #titulo da img
 plt.title ('Quantidade de vendas globais por ano (mi)', loc = 'left', fontsize = 14 )
 #Gráfico
-sns.barplot(data= data, x = 'Year', y = 'Global', ci = None, estimator=sum) #ci = None tira a barra vertical de desv, estimator = sum faz a soma de cada ano
+sns.barplot(data= data, x = 'Year', y = 'Global', errorbar= None, estimator=sum) #errorbar = None tira a barra vertical de desv, estimator = sum faz a soma de cada ano
 #legenda
 plt.xlabel ('Quantidades de vendas (mi)')
 #plt
 #plt.show()
 
-#print(data.head())
+print(data.columns)
 
 plt.figure(figsize=(13,5))
 plt.style.use('ggplot')
 
 plt.title('Distribuiçao das vendas globais', loc='left', fontsize = 14)
-sns.kdeplot(data['Global'], fill = True, bw = 1, linewidth = 2.5) #fill = adiciona sombra abaixo da linha
+sns.kdeplot(data['Global'], fill = True, bw_method = 1, linewidth = 2.5) #fill = adiciona sombra abaixo da linha
 
 #plt.show()
 Analise = data.groupby(by =['Year']).sum()
-print (Analise)
+#print (Analise)
 
 plt.figure(figsize= (13,5))
 plt.title('Análise da distribuição global (mi)', loc= 'left', fontsize = 14)
@@ -61,7 +62,7 @@ Europa = [ Europa / Total * 100 for Europa, Total in zip(Analise['Europe']  , An
 Japao = [ Japao / Total * 100 for Japao, Total in zip(Analise['Japan']  , Analise ['Global'] )]
 Mundo = [ Mundo / Total * 100 for Mundo, Total in zip(Analise['Rest of World']  , Analise ['Global'] )]
 
-print (America, Europa, Japao, Mundo)
+#print (America, Europa, Japao, Mundo)
 
 plt.figure(figsize= (13,5))
 
@@ -82,4 +83,18 @@ plt.xticks (grupos, Analise.index)
 plt.xlabel ('Grupo')
 plt.ylabel ('Distribuição %')
 plt.legend (['América do Norte', 'Europa', 'Japão', 'Mundo'], bbox_to_anchor = (0.7, -0.1), ncol = 4)
-plt.show()
+
+
+label = LabelEncoder() #LabelEncoder serve para transformar cada valor escrito em um valor numérico, adicionando identificadores numericos unicos
+
+data['Produtora'] = label.fit_transform(data['Publisher'])
+data['Genero'] = label.fit_transform(data['Genre'])
+data['Jogo'] = label.fit_transform(data['Game'])
+
+print(data.head())
+
+cores = sns.color_palette('husl', 8)
+print (cores)
+
+
+#plt.show()
