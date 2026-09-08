@@ -59,7 +59,7 @@ sns.regplot(data=data, x='Salario', y='Experiencia')
 #sns.scatterplot(data=data, x='Salario', y='Experiencia')
 
 
-#Correlação
+#Correlação linear
 corr = data.corr()
 plt.figure(figsize=(13,5))
 sns.heatmap(corr, annot=True)#mostra grafico de correlaçao, Annot adiciona o numero dentro de cada caixinha da corr.
